@@ -200,7 +200,7 @@ class CDUInitPage {
         mcdu.onRightInput[0] = async () => {
             let value = mcdu.inOut;
             mcdu.clearUserInput();
-            if (await mcdu.trySetZeroFuelWeightZFWCG(value)) {
+            if (mcdu.trySetZFWCG(value)) {
                 CDUInitPage.updateTowIfNeeded(mcdu);
                 CDUInitPage.ShowPage2(mcdu);
             }
