@@ -58,6 +58,7 @@ class A320_Neo_PFD_MainPage extends NavSystemPage {
     init() {
         super.init();
 
+        this.getDeltaTime = A32NX_Util.createDeltaTimeCalculator(this._lastTime);
         this.showILS = SimVar.GetSimVarValue("L:BTN_LS_FILTER_ACTIVE", "bool");
         this.ils.showILS(this.showILS);
         this.compass.showILS(this.showILS);
@@ -92,8 +93,10 @@ class A320_Neo_PFD_MainPage extends NavSystemPage {
 
         this.electricity = document.querySelector('#Electricity')
     }
-    onUpdate(_deltaTime) {
-        super.onUpdate();
+    onUpdate() {
+        const _deltaTime = this.getDeltaTime();
+
+        super.onUpdate(_deltaTime);
         if (!this.hasInitialized) return;
         this.flashTimer -= _deltaTime/1000;
         if (this.flashTimer <= 0) {
@@ -115,7 +118,7 @@ class A320_Neo_PFD_MainPage extends NavSystemPage {
         }
 
         const IsOnGround = SimVar.GetSimVarValue("SIM ON GROUND", "Bool");
-        const isAnyEngineSwitchOn = SimVar.GetSimVarValue("GENERAL ENG STARTER:1", "Bool") || SimVar.GetSimVarValue("GENERAL ENG STARTER:2", "Bool");
+        const isAnyEngineSwitchOn = SimVar.GetSimVarValue("FUELSYSTEM VALVE SWITCH:6", "Bool") || SimVar.GetSimVarValue("FUELSYSTEM VALVE SWITCH:7", "Bool");
 
         if (IsOnGround && isAnyEngineSwitchOn) {
             this.groundCursor.style.display = "block";
@@ -162,8 +165,8 @@ class A320_Neo_PFD_MainPage extends NavSystemPage {
          * TODO: Seperate both PFD screens, currently if the FO changes its screen, it also tests the screen for the captain and vice versa.
          **/
 
-        let selfTestCurrentKnobValueFO = SimVar.GetSimVarValue("LIGHT POTENTIOMETER:20", "number");
-        let selfTestCurrentKnobValueCAP = SimVar.GetSimVarValue("LIGHT POTENTIOMETER:18", "number");
+        let selfTestCurrentKnobValueFO = SimVar.GetSimVarValue("LIGHT POTENTIOMETER:90", "number");
+        let selfTestCurrentKnobValueCAP = SimVar.GetSimVarValue("LIGHT POTENTIOMETER:88", "number");
 
         const FOKnobChanged = (selfTestCurrentKnobValueFO >= 0.1 && this.selfTestLastKnobValueFO < 0.1);
         const CAPKnobChanged = (selfTestCurrentKnobValueCAP >= 0.1 && this.selfTestLastKnobValueCAP < 0.1);
