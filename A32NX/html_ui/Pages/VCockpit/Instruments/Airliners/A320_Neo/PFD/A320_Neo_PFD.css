@@ -110,17 +110,18 @@ a320-neo-pfd-element {
         border: none;
         display: block; }
         a320-neo-pfd-element #Mainframe #HorizonContainer #GroundCursor svg line {
+          stroke-width: 2.6;
           stroke: white; }
       a320-neo-pfd-element #Mainframe #HorizonContainer #GroundCursorLimits {
         position: absolute;
-        left: 25%;
-        top: 35%;
+        left: 25.1%;
+        top: 36.7%;
         width: 37.5%;
         height: 10%;
         border: none;
         display: block; }
         a320-neo-pfd-element #Mainframe #HorizonContainer #GroundCursorLimits svg line {
-          stroke-width: 10;
+          stroke-width: 14;
           stroke: white; }
     a320-neo-pfd-element #Mainframe #InstrumentsContainer {
       transform: rotateX(0);
@@ -306,13 +307,13 @@ a320-neo-pfd-element {
           left: 22%;
           width: 36%;
           height: 100%;
-          background-color: transparent; }
+          background-color: rgba(13,20,35,1); }
         a320-neo-pfd-element #Mainframe #InstrumentsContainer #FMA #SpecialMessages div {
           position: absolute;
           width: 36%;
           bottom: 0%;
           height: 34%;
-          background-color: transparent; }
+          background-color: rgba(13,20,35,1); }
         a320-neo-pfd-element #Mainframe #InstrumentsContainer #FMA #SpecialMessages #Msg1 {
           left: 2%; }
         a320-neo-pfd-element #Mainframe #InstrumentsContainer #FMA #SpecialMessages #Msg2 {
